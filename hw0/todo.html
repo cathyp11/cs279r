@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style type="text/css">
+		body{
+			background-color: #494C59;
+			color: #fff;
+			font-family: "Courier",Helvetica,Arial,sans-serif;
+		}
+		.container{
+			margin: 50px;
+		}
+		li{
+			list-style: none;
+			/*background-color: #FFC0CB;*/
+		}
+		#checked{
+			margin: 10px 20px;
+		}
+		#checked:checked + label{
+			text-decoration: line-through;
+		}
+	</style>
+    <title>Home - Cathy Park</title>
+</head>
+<body>
+	<div class="container">
+		<!-- title	 -->
+		<h1>To Do</h1>
+		<!-- input box for adding tasks -->
+		<input id="task" type="text" placeholder="To Do">
+		<!-- button to add the task -->
+		<button id="add" onclick="newList()" type="submit">Add</button>
+		<!-- list for tasks -->
+		<ul id="tasks">
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var t = document.getElementsByTagName('li');
+		var i;
+		// go through the list and add checkboxes to each element
+		for (i = 0; i < t.length; i++){
+			var check = document.createElement('input');
+			check.type = 'checkbox';
+			check.id = 'checked';
+			check.checked = false;
+			t[i].prepend(check);
+		}
+
+		function checking() {
+			if (t.checked) {
+				console.log("checked");
+				t.value.strike();
+			}
+		}
+		function newList() {
+			var l = document.createElement('li');
+			var value = document.getElementById('task').value;
+			var txt = document.createElement('label');
+			var check = document.createElement('input');
+			check.type = 'checkbox';
+			check.id = 'checked';
+			check.checked = false;
+			l.appendChild(txt);
+			txt.append(value);
+			l.prepend(check);
+			document.getElementById("tasks").appendChild(l);
+			document.getElementById('task').reset();
+		}
+
+
+
+	</script>
+</body>
+</html>
