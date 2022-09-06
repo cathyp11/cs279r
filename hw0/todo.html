@@ -8,69 +8,78 @@
 			color: #fff;
 			font-family: "Courier",Helvetica,Arial,sans-serif;
 		}
+
 		.container{
 			margin: 50px;
 		}
+
 		li{
 			list-style: none;
-			/*background-color: #FFC0CB;*/
 		}
+
 		#checked{
 			margin: 10px 20px;
 		}
+
+		/*if checked, cross it off*/
 		#checked:checked + label{
 			text-decoration: line-through;
 		}
 	</style>
-    <title>Home - Cathy Park</title>
+
+    <title>To Do's</title>
 </head>
 <body>
 	<div class="container">
 		<!-- title	 -->
 		<h1>To Do</h1>
 		<!-- input box for adding tasks -->
-		<input id="task" type="text" placeholder="To Do">
+		<input id="task" type="text" placeholder="To Do" value="">
 		<!-- button to add the task -->
-		<button id="add" onclick="newList()" type="submit">Add</button>
+		<button id="add" onclick="newList()">Add</button>
 		<!-- list for tasks -->
 		<ul id="tasks">
 		</ul>
 	</div>
 	<script type="text/javascript">
-		var t = document.getElementsByTagName('li');
-		var i;
-		// go through the list and add checkboxes to each element
-		for (i = 0; i < t.length; i++){
-			var check = document.createElement('input');
-			check.type = 'checkbox';
-			check.id = 'checked';
-			check.checked = false;
-			t[i].prepend(check);
-		}
-
-		function checking() {
-			if (t.checked) {
-				console.log("checked");
-				t.value.strike();
-			}
-		}
+		// get the value of the input and append it to the to-do list
 		function newList() {
+			// variable to add item to the list
 			var l = document.createElement('li');
+			
+			// fetch the value from the input text field
 			var value = document.getElementById('task').value;
-			var txt = document.createElement('label');
+			
+			// variable for the checkbox for each list item
 			var check = document.createElement('input');
+			
+			// variable for the label for the text of list item
+			var txt = document.createElement('label');
+			
+			// set up the checkbox
 			check.type = 'checkbox';
+			
+			// add an id for the list item
 			check.id = 'checked';
+			
+			// make the checkbox unchecked
 			check.checked = false;
+
+			// add a label tag for each item of the list
 			l.appendChild(txt);
+
+			// add the text from the input field to the list
 			txt.append(value);
+
+			// add checkbox in front of each list item
 			l.prepend(check);
+
+			// add the list item under the 'tasks' list
 			document.getElementById("tasks").appendChild(l);
-			document.getElementById('task').reset();
+			
+			// clear the input text field
+			document.getElementById('task').value = '';
 		}
-
-
-
 	</script>
 </body>
 </html>
